@@ -1,164 +1,232 @@
 package java8;
 
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.function.Supplier;
+import java.util.List;
 
 public class LambdaExercises_001 {
 
     public static void main(String[] args){
 
-    //Declaration and initialization
-    List<String> stringList = Arrays.asList("Sachin", "Shewag", "Gambhir","Virat", "", "Yuvraj", null,"Dhoni", "Raina");
-    List<Integer> integerList = Arrays.asList(10, 44, 18, 12, 7, 3);
+        //Declaration and initialization
+        List<String> stringList = Arrays.asList("Sachin", "Shewag", "Gambhir","Virat", "", "Yuvraj", null,"Dhoni", "Raina");
+        List<Integer> integerList = Arrays.asList(10, 44, 18, 12, 7, 3);
 
-    //Use lambda with forEach to print a list of strings with "Hello " prefix.
-    System.out.println("Using Lambda with forEach to print a List of String with Hello prefix: ");
-    stringList.forEach(s -> System.out.print("Hello "+s+" "));
-    System.out.println();
+        //Use lambda with forEach to print a list of strings with "Hello " prefix.
+        System.out.println("Using Lambda with forEach to print a List of String with Hello prefix: ");
+        stringList.forEach(s -> System.out.print("Hello "+s+" "));
+        System.out.println();
 
-    //Sort a list of integers in descending order using lambda Comparator.
-    List<Integer> descIntegerListUsingLambda = integerList.stream()
-            .sorted((a,b)->b.compareTo(a))
-            .collect(Collectors.toList());
-    System.out.println("Sorting a list of integers in descending order using lambda Comparator :" +descIntegerListUsingLambda);
+        //Sort a list of integers in descending order using lambda Comparator.
+        List<Integer> descIntegerListUsingLambda = integerList.stream()
+                .sorted((a,b)->b.compareTo(a))
+                .collect(Collectors.toList());
+        System.out.println("Sorting a list of integers in descending order using lambda Comparator :" +descIntegerListUsingLambda);
 
-    //Sort a list of integers in ascending order using lambda Comparator.
-    List<Integer> ascIntegerListUsingLambda = integerList.stream()
-            .sorted((a,b)->a.compareTo(b))
-            .collect(Collectors.toList());
-    System.out.println("Sorting a list of integers in ascending order using lambda Comparator :" +ascIntegerListUsingLambda);
+        //Sort a list of integers in ascending order using lambda Comparator.
+        List<Integer> ascIntegerListUsingLambda = integerList.stream()
+                .sorted((a,b)->a.compareTo(b))
+                .collect(Collectors.toList());
+        System.out.println("Sorting a list of integers in ascending order using lambda Comparator :" +ascIntegerListUsingLambda);
 
-    //Sort a list of integers in descending order using Comparator method.
-    List<Integer> descIntegerListUsingComparatorMethod = integerList.stream()
-            .sorted(Comparator.reverseOrder())
-            .collect(Collectors.toList());
-    System.out.println("Sorting a list of integers in descending order using Comparator method :" +descIntegerListUsingComparatorMethod);
+        //Sort a list of integers in descending order using Comparator method.
+        List<Integer> descIntegerListUsingComparatorMethod = integerList.stream()
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+        System.out.println("Sorting a list of integers in descending order using Comparator method :" +descIntegerListUsingComparatorMethod);
 
-    //Sort a list of integers in descending order using Comparator method.
-    List<Integer> ascIntegerListUsingComparatorMethod = integerList.stream()
-            .sorted(Comparator.naturalOrder())
-            .collect(Collectors.toList());
-    System.out.println("Sorting a list of integers in ascending order using Comparator method :" +ascIntegerListUsingComparatorMethod);
+        //Sort a list of integers in descending order using Comparator method.
+        List<Integer> ascIntegerListUsingComparatorMethod = integerList.stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+        System.out.println("Sorting a list of integers in ascending order using Comparator method :" +ascIntegerListUsingComparatorMethod);
 
-    //Filter even numbers from a list using Predicate and lambda.
-    List<Integer> evenNumbers = integerList.stream()
-            .filter(n->n%2==0)
-            .collect(Collectors.toList());
-    System.out.println("Filtering even numbers from a list using Predicate and lambda :" +evenNumbers);
+        //Filter even numbers from a list using Predicate and lambda.
+        List<Integer> evenNumbers = integerList.stream()
+                .filter(n->n%2==0)
+                .collect(Collectors.toList());
+        System.out.println("Filtering even numbers from a list using Predicate and lambda :" +evenNumbers);
 
-    //Use Consumer to print each element of a list with uppercase
-    System.out.println("Using Consumer to print each element of a list with uppercase :");
-    stringList.forEach(s-> System.out.println(s!=null ? s.toUpperCase() : null));
+        //Use Consumer to print each element of a list with uppercase
+        System.out.println("Using Consumer to print each element of a list with uppercase :");
+        stringList.forEach(s-> System.out.println(s!=null ? s.toUpperCase() : null));
 
-    //Create a Supplier that generates random numbers (1–100).
-    Random random = new Random();
-    Supplier<Integer> randomNumberSupplierFrom1To100 = () -> random.nextInt(100) +1;
-    System.out.println("Generate Random number using the Supplier : "+randomNumberSupplierFrom1To100.get());
+        //Create a Supplier that generates random numbers (1–100).
+        Random random = new Random();
+        Supplier<Integer> randomNumberSupplierFrom1To100 = () -> random.nextInt(100) +1;
+        System.out.println("Generate Random number using the Supplier : "+randomNumberSupplierFrom1To100.get());
 
-    /*
-    What Does +1 Do in random.nextInt(100) + 1?
+        /*
+        What Does +1 Do in random.nextInt(100) + 1?
 
-    random.nextInt(100) generates a random integer from 0 (inclusive) to 99 (inclusive) — total 100 possible values.
-    By adding +1, you shift the range to 1 (inclusive) to 100 (inclusive).
+        random.nextInt(100) generates a random integer from 0 (inclusive) to 99 (inclusive) — total 100 possible values.
+        By adding +1, you shift the range to 1 (inclusive) to 100 (inclusive).
 
-    Without +1:
+        Without +1:
 
-    Range: 0 to 99
+        Range: 0 to 99
 
-    With +1:
+        With +1:
 
-    Range: 1 to 100 → exactly what the exercise asks ("random numbers 1–100").
+        Range: 1 to 100 → exactly what the exercise asks ("random numbers 1–100").
 
-    What Happens If You Use +2 Instead?
+        What Happens If You Use +2 Instead?
 
-    random.nextInt(100) + 2 → Range: 2 to 101
+        random.nextInt(100) + 2 → Range: 2 to 101
 
-    GENERIC FORMULA :
-    random.nextInt(max - min + 1) + min
-    In our case, random.nextInt(100 - 1 + 1) + 1, ie random.nextInt(100) + 1
+        GENERIC FORMULA :
+        random.nextInt(max - min + 1) + min
+        In our case, random.nextInt(100 - 1 + 1) + 1, ie random.nextInt(100) + 1
 
-    For 1 to 100:
+        For 1 to 100:
 
-    max = 100, min = 1
-    nextInt(100 - 1 + 1) + 1 = nextInt(100) + 1 → correct!
+        max = 100, min = 1
+        nextInt(100 - 1 + 1) + 1 = nextInt(100) + 1 → correct!
 
-    For 10 to 50:
-    nextInt(50-10+1) + 10
-    nextInt(41) + 10
+        For 10 to 50:
+        nextInt(50-10+1) + 10
+        nextInt(41) + 10
 
-     */
+         */
 
-    //Use Function to convert a list of strings to uppercase
-    System.out.println("Using Function to convert a list of non null and non empty strings to uppercase : "+randomNumberSupplierFrom1To100.get());
-    stringList.stream()
-            .filter(s -> s != null && !s.isEmpty())
-            .map(String::toUpperCase)
-            .forEach(System.out::println);
+        //Use Function to convert a list of strings to uppercase
+        System.out.println("Using Function to convert a list of non null and non empty strings to uppercase : "+randomNumberSupplierFrom1To100.get());
+        stringList.stream()
+                .filter(s -> s != null && !s.isEmpty())
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
 
-    //Chain Function: Convert string to uppercase, then to length.
-    List<Integer> lengthOfStrings = stringList.stream()
-            .filter(s->s!=null && !s.isEmpty())
-            .map(String::toUpperCase) //s->s.toUpperCase()
-            .map(String::length) //s->s.length()
-            .collect(Collectors.toList());
-    System.out.println("Chain Function: Converted string to uppercase, then to length, lengthOfStrings : "+lengthOfStrings);
+        //Chain Function: Convert string to uppercase, then to length.
+        List<Integer> lengthOfStrings = stringList.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .map(String::toUpperCase) //s->s.toUpperCase()
+                .map(String::length) //s->s.length()
+                .collect(Collectors.toList());
+        System.out.println("Chain Function: Converted string to uppercase, then to length, lengthOfStrings : "+lengthOfStrings);
 
-    //Chain Function: Convert string to uppercase, then to length. (Combining 2 maps)
-    List<Integer> lengthOfStrings1 = stringList.stream()
-            .filter(s->s!=null && !s.isEmpty())
-            .map(s->s.toUpperCase().length()) //s->s.toUpperCase()
-            .collect(Collectors.toList());
-    System.out.println("Chain Function: Converted string to uppercase, then to length, lengthOfStrings1 : "+lengthOfStrings1);
+        //Chain Function: Convert string to uppercase, then to length. (Combining 2 maps)
+        List<Integer> lengthOfStrings1 = stringList.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .map(s->s.toUpperCase().length()) //s->s.toUpperCase()
+                .collect(Collectors.toList());
+        System.out.println("Chain Function: Converted string to uppercase, then to length, lengthOfStrings1 : "+lengthOfStrings1);
 
-    //In interviews try to avoid storing stream and just print using forEach like the below code
-    System.out.println("Chain Function: Converted string to uppercase, then to length : "+lengthOfStrings1);
-    stringList.stream()
-            .filter(s->s!=null && !s.isEmpty())
-            .map(s->s.toUpperCase().length()) //s->s.toUpperCase()
-            .forEach(System.out::println);
+        //In interviews try to avoid storing stream and just print using forEach like the below code
+        System.out.println("Chain Function: Converted string to uppercase, then to length : "+lengthOfStrings1);
+        stringList.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .map(s->s.toUpperCase().length()) //s->s.toUpperCase()
+                .forEach(System.out::println);
 
-    //Use Predicate to filter names starting with "S" from a list.
-    System.out.println("Using Predicate to filter names starting with \"S\" from a list : ");
-    stringList.stream()
-            .filter((s->s!=null && !s.isEmpty() && s.startsWith("S")))
-            .forEach(System.out::println);
+        //Use Predicate to filter names starting with "S" from a list.
+        System.out.println("Using Predicate to filter names starting with \"S\" from a list : ");
+        stringList.stream()
+                .filter((s->s!=null && !s.isEmpty() && s.startsWith("S")))
+                .forEach(System.out::println);
 
-    //Implement a custom functional interface "Calculator" with add and subtract methods using lambda.
-    Calculator add = (a,b) ->  a+b; //We can use Integer::sum also
-    Calculator subtract = (a,b) ->  a-b;
-    System.out.println("Using the custom functional interface implementation, adding two numbers 6, 4 is "+add.calc(6,4));
-    System.out.println("Using the custom functional interface implementation, subtracting two numbers 6, 4 is "+subtract.calc(6,4));
+        //Implement a custom functional interface "Calculator" with add and subtract methods using lambda.
+        Calculator add = (a,b) ->  a+b; //We can use Integer::sum also
+        Calculator subtract = (a,b) ->  a-b;
+        System.out.println("Using the custom functional interface implementation, adding two numbers 6, 4 is "+add.calc(6,4));
+        System.out.println("Using the custom functional interface implementation, subtracting two numbers 6, 4 is "+subtract.calc(6,4));
 
-    //Use lambda with Runnable to print "Hello from thread".
-    /*
-    What It Means
+        //Use lambda with Runnable to print "Hello from thread".
+        /*
+        What It Means
 
-    Runnable is a functional interface with one abstract method: void run().
-    You need to create a lambda that implements Runnable.
-    Then run it in a Thread to print the message from a separate thread (not main thread).
+        Runnable is a functional interface with one abstract method: void run().
+        You need to create a lambda that implements Runnable.
+        Then run it in a Thread to print the message from a separate thread (not main thread).
 
-    Why You Need a Thread
+        Why You Need a Thread
 
-    If you just call run() directly, it executes in the main thread — no "from thread" effect.
-    To see "Hello from thread" (and learn threading), you must create a Thread and start it.
-     */
+        If you just call run() directly, it executes in the main thread — no "from thread" effect.
+        To see "Hello from thread" (and learn threading), you must create a Thread and start it.
+        */
 
-     Runnable runnable = () -> System.out.println("Hello from thread"); //Implementing the runnable interface
-     runnable.run(); //Running from main thread
+        Runnable runnable = () -> System.out.println("Hello from thread"); //Implementing the runnable interface
+        runnable.run(); //Running from main thread
 
-     Thread t1 = new Thread(runnable);
-     t1.start(); //Running from Thread t1
+        Thread t1 = new Thread(runnable);
+        t1.start(); //Running from Thread t1
 
-     System.out.println("Just printing Hello from main class"); //Threads are non-deterministic, so printing orders may vary
+        System.out.println("Just printing Hello from main class"); //Threads are non-deterministic, so printing orders may vary
 
-     //Sort a list of employees by salary using Comparator lambda.
+        //Sort a list of employees by salary using Comparator lambda.
+        List<Employee> employeeList = new ArrayList<>();
+
+        Employee employee1 = new Employee(18, "Virat", 200000);
+        Employee employee2 = new Employee(10, "Sachin", 600000);
+        Employee employee3 = new Employee(7, "Dhoni", 300000);
+
+        employeeList.add(employee1);
+        employeeList.add(employee2);
+        employeeList.add(employee3);
+
+        System.out.println("employeeList : "+employeeList);
 
 
+        List<Employee> employeeListSortedBySalaryDesc = employeeList.stream()
+                .sorted(Comparator.comparingInt(Employee::getSalary).reversed())
+                //.sorted(Comparator.comparingInt((Employee e) -> e.getSalary()).reversed())
+                .toList();  // Java 16+ immutable list
+                //.collect(Collectors.toList()); // This is also correct
 
-    }
+        /*
+        Aspect,.toList() (Java 16+),.collect(Collectors.toList()) (Java 8+),Winner & Why
+        Conciseness,"Shorter, cleaner code",More verbose,.toList() wins
+        Readability,Very clear intent,Slightly more boilerplate,.toList() wins
+        Performance,Slightly faster (direct implementation),Minor overhead (collector creation),.toList() wins (tiny difference)
+        Returned List Type,Immutable (unmodifiable List),Mutable (ArrayList – can add/remove),Depends on need
+        Null Safety,Doesn't allow null elements (throws NPE),Allows null elements,.collect if you need nulls
+        Java Version,Java 16 and above (including your JDK 25),Java 8 and above,.toList() for modern code
+        */
+
+        System.out.println("employeeList descending salary wise : "+employeeListSortedBySalaryDesc);
+
+        //Descending using Lambda
+        List<Employee> employeeListSortedBySalaryDesc1 = employeeList.stream()
+                .sorted((e1, e2) -> Integer.compare(e2.getSalary(), e1.getSalary()))  // Descending
+                .toList();
+        System.out.println("employeeList descending salary wise : "+employeeListSortedBySalaryDesc1);
+
+        //Find highest paid employee
+        Employee highestPaidEmployee = employeeList.stream()
+                .max(Comparator.comparingInt(Employee::getSalary))
+                .orElse(null);
+
+        System.out.println("Highest paid employee : "+highestPaidEmployee);
+
+        //Find second highest paid employee
+        Employee secondHighestPaidEmployee = employeeList.stream()
+                .sorted(Comparator.comparingInt(Employee::getSalary).reversed())
+                .skip(1)
+                .findFirst()
+                .orElse(null);
+
+        System.out.println("Second Highest paid employee : "+secondHighestPaidEmployee);
+
+        //Group a list of strings by length using Collectors.groupingBy with lambda.
+        Map<Integer, List<String>> groupOfStringsByLength = stringList.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .collect(Collectors.groupingBy(String::length));
+        System.out.println("Grouping a list of strings by length using Collectors.groupingBy with lambda : "+groupOfStringsByLength);
+
+        /*
+        Map<Integer, Long> countByLength = strings.stream()
+        .collect(Collectors.groupingBy(String::length, Collectors.counting()));
+
+        Map<Integer, Set<String>> setByLength = strings.stream()
+        .collect(Collectors.groupingBy(String::length, Collectors.toSet()));
+
+        groupedByLength.entrySet().stream()
+        .sorted(Map.Entry.comparingByKey())
+        .forEach(System.out::println);
+
+         */
+
+    };
 
 
 }
