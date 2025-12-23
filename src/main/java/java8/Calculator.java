@@ -1,5 +1,6 @@
 package java8;
 
+@FunctionalInterface
 public interface Calculator {
-    int add(int a, int b);
+    int calc(int a, int b);
 }
