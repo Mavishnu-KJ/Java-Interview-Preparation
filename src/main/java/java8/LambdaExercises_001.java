@@ -13,7 +13,6 @@ public class LambdaExercises_001 {
     //Declaration and initialization
     List<String> stringList = Arrays.asList("Sachin", "Shewag", "Gambhir","Virat", "", "Yuvraj", null,"Dhoni", "Raina");
     List<Integer> integerList = Arrays.asList(10, 44, 18, 12, 7, 3);
-    List<Long> employessSalaryList = Arrays.asList(150000, 250000, 100000, 78000, 500000);
 
     //Use lambda with forEach to print a list of strings with "Hello " prefix.
     System.out.println("Using Lambda with forEach to print a List of String with Hello prefix: ");
