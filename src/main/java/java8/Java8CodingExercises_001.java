@@ -2,6 +2,7 @@ package java8;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -237,6 +238,7 @@ public class Java8CodingExercises_001 {
 
          */
 
+        /*
         //Using custom Functional Interface
         ThrowCheckedException<String> tce = s->{
 
@@ -257,6 +259,35 @@ public class Java8CodingExercises_001 {
 
                 }
         );
+
+        */
+
+        //Use BiFunction to add two numbers with lambda
+        BiFunction<Integer, Integer, Integer> addition = Integer::sum;
+        System.out.println("Addition of two numbers using BiFunction, addition.apply(10,20) is "+addition.apply(10,20));
+
+        //Count elements in list using count
+        int numberOfStringsInStringList = (int) stringList.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .count();
+
+        System.out.println("Count elements in list using count, numberOfStringsInStringList is "+numberOfStringsInStringList);
+
+        //NOTE : count() returns long — use long variable, best practice
+
+        long numberOfStringsInStringList1 = (int) stringList.stream()
+                .filter(s->s!=null && !s.isEmpty())
+                .count();
+
+        System.out.println("Count elements in list using count, numberOfStringsInStringList1 is "+numberOfStringsInStringList1);
+
+        //Reduce to sum of list using reduce.
+        long sumOfIntegerList = integerList.stream()
+                .filter(Objects::nonNull)
+                .reduce((a, b) -> a+b)
+                .orElse(null);
+
+        System.out.println("Reduce to sum of list using reduce, sumOfIntegerList is "+sumOfIntegerList);
 
 
 
